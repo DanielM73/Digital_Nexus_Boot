@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatBot - Digital Nexus</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .chat-container {
+      background: white;
+      width: 400px;
+      height: 500px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      background: #0c4a6e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+    .user, .bot {
+      margin-bottom: 10px;
+    }
+    .user {
+      text-align: right;
+      color: #0c4a6e;
+    }
+    .bot {
+      text-align: left;
+      color: #333;
+    }
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      font-size: 14px;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      background: #0c4a6e;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Digital Nexus - Asistente Virtual</div>
+    <div class="chat-box" id="chatBox"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Escribe tu pregunta...">
+      <button type="button" onclick="sendMessage()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      if (message === "") return;
+
+      const chatBox = document.getElementById("chatBox");
+      chatBox.innerHTML += `<div class="user"><strong>Tú:</strong> ${message}</div>`;
+
+      let response = "";
+
+      const msgLower = message.toLowerCase();
+      if (msgLower.includes("informacion")) {
+        response = "Para trabajar con nosotros en Digital Nexus, puedes enviarnos tu hoja de vida a nuestro portal de talento. Buscamos personas curiosas, proactivas y con ganas de crecer en un entorno digital en constante evolución.";
+      } else if (msgLower.includes("horario") || msgLower.includes("horarios")) {
+        response = "En Digital Nexus trabajamos de lunes a viernes, de 8:00 a.m. a 5:00 p.m. Fomentamos la puntualidad y el equilibrio entre la vida personal y profesional.";
+      } else if (msgLower.includes("empresa") || msgLower.includes("sobre")) {
+        response = "Digital Nexus nació en 2025 con la visión de conectar el talento con la tecnología. Fue fundada por un grupo de ingenieros apasionados por la innovación, con el objetivo de transformar la forma en que las personas aprenden, colaboran y se desarrollan en el entorno digital.";
+      } else {
+        response = "Lo siento, no tengo información sobre eso de momento. Puedes intentar con: 'informacion', 'horarios' o 'sobre la empresa'.";
+      }
+
+      chatBox.innerHTML += `<div class="bot"><strong>Bot:</strong> ${response}</div>`;
+      input.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</b
